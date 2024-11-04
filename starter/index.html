@@ -36,12 +36,12 @@
             <!-- END page-header -->
           </div>
 
-          <div class="ms-auto">
-            <a id="add-task"
+          <div class="ms-auto " >
+            <a 
               href="#modal-task"
               data-bs-toggle="modal"
               class="btn btn-success btn-rounded px-4 rounded-pill"
-              ><i class="fa fa-plus fa-lg me-2 ms-n2 text-success-900"></i> Add
+              ><i id="add-task" class="fa fa-plus fa-lg me-2 ms-n2 text-success-900"></i> Add
               Task</a
             >
           </div>
@@ -49,11 +49,11 @@
 
         <div class="row">
           <div class="col-xl-4 col-lg-6">
-            <div class="panel panel-inverse">
-              <div class="panel-heading">
-                <h4 class="panel-title">To do (<span id="to-do-tasks-count">5</span>)</h4>
+            <div class="panel panel-inverse ">
+              <div class="panel-heading bg-success p-2 text-dark bg-opacity-25">
+                <h4 class="panel-title">To do (<span id="to-do-tasks-count"></span>)</h4>
               </div>
-              <div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body p-0" id="to-do-tasks">
+              <div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body p-0 bg-success p-2 text-dark bg-opacity-25" id="to-do-tasks">
                 <!-- TO DO TASKS HERE -->      
                 <!-- <button class="">
                   <div class="">
@@ -85,12 +85,12 @@
           </div>
           <div class="col-xl-4 col-lg-6">
             <div class="panel panel-inverse">
-              <div class="panel-heading">
+              <div class="panel-heading bg-success p-2 text-dark bg-opacity-50">
                 <h4 class="panel-title">
-                  In Progress (<span id="in-progress-tasks-count">4</span>)
+                  In Progress (<span id="in-progress-tasks-count"></span>)
                 </h4>
               </div>
-              <div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body p-0" id="in-progress-tasks">
+              <div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body p-0 bg-success p-2 text-dark bg-opacity-50" id="in-progress-tasks">
                 <!-- IN PROGRESS TASKS HERE -->
                 
                
@@ -101,10 +101,10 @@
           </div>
           <div class="col-xl-4 col-lg-6">
             <div class="panel panel-inverse">
-              <div class="panel-heading">
-                <h4 class="panel-title">Done (<span id="done-tasks-count">4</span>)</h4>
+              <div class="panel-heading bg-success p-2 text-white">
+                <h4 class="panel-title">Done (<span id="done-tasks-count"></span>)</h4>
               </div>
-              <div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body p-0" id="done-tasks">
+              <div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body p-0 bg-success p-2 text-white" id="done-tasks">
                 <!-- DONE TASKS HERE -->
                 
                 
@@ -128,12 +128,12 @@
     <!-- END #app -->
 
     <!-- TASK MODAL -->
-      <div class="modal fade " id="modal-task">
-        <div class="modal-dialog ">
+      <div class="modal fade" id="modal-task">
+        <div class="modal-dialog eventid">
           <div class="modal-content">
             <form action="scripts.php" method="POST" id="form-task">
               <div class="modal-header">
-                <h5 class="modal-title">Add Task</h5>
+                <h5  class="modal-title">Add Task</h5>
                 <a id="adding" href="#" class="btn-close" data-bs-dismiss="modal"></a>
               </div>
               <div class="modal-body">
@@ -142,6 +142,7 @@
                   <div class="mb-3">
                     <label class="form-label">Title</label>
                     <input type="text" class="form-control" id="task-title"/>
+                    <p id="title_error"></p>
                   </div>
                   <div class="mb-3">
                     <label class="form-label">Type</label>
@@ -149,12 +150,16 @@
                       <div class="form-check mb-1">
                         <input class="form-check-input" name="task-type" type="radio" value="Feature" id="task-type-feature"/>
                         <label class="form-check-label" for="task-type-feature">Feature</label>
+        
                       </div>
                       <div class="form-check">
                         <input class="form-check-input" name="task-type" type="radio" value="Bug" id="task-type-bug"/>
                         <label class="form-check-label" for="task-type-bug">Bug</label>
+                         
                       </div>
+                      <p id="type_error"></p>
                     </div>
+                    
                     
                   </div>
                   <div class="mb-3">
@@ -166,6 +171,7 @@
                       <option value="High">High</option>
                       <option value="Critical">Critical</option>
                     </select>
+                    <p id="form-select-p"></p>
                   </div>
                   <div class="mb-3">
                     <label class="form-label">Status</label>
@@ -175,14 +181,17 @@
                       <option value="In Progress">In Progress</option>
                       <option value="Done">Done</option>
                     </select>
+                    <p id="dtatus_error"></p>
                   </div>
                   <div class="mb-3">
                     <label class="form-label">Date</label>
                     <input type="date" class="form-control" id="task-date"/>
+                    <p id="dat_error"></p>
                   </div>
                   <div class="mb-0">
                     <label class="form-label">Description</label>
                     <textarea class="form-control" rows="10" id="task-description"></textarea>
+                    <p id="description_error"></p>
                   </div>
                 
               </div>
@@ -192,17 +201,19 @@
                     <button type="button" name="delete" class="btn btn-danger task-action-btn" id="task-delete-btn">Delete</button>
                     <button type="button" name="update" class="btn btn-warning task-action-btn" id="task-update-btn">Update</button>
                     <button type="button" name="save" class="btn btn-primary task-action-btn" id="task-save-btn">Save</button> 
-                
               </div>
             </form>
           </div>
         </div>
       </div>
       <!-- Modal content goes here -->
-      
+
+     
+
+           
     <!-- ================== BEGIN core-js ================== -->
     <script src="assets/js/script.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- ================== END core-js ================== -->
   </body>
 </html>
